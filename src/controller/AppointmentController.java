@@ -1,7 +1,9 @@
 package controller;
 
 import entity.Appointment;
+import entity.Doctor;
 import model.AppointmentModel;
+import model.DoctorModel;
 
 import javax.swing.*;
 import java.util.List;
@@ -42,6 +44,8 @@ public class AppointmentController {
     public String getAll(List listObject){
         String list = "Appointment List";
 
+        // RECORDAR HACER UN INNER JOIN PARA ESTA
+
         for (Object obj : listObject) {
             Appointment objAppointment = (Appointment) obj;
             list += objAppointment.getId() + " - ";
@@ -53,7 +57,7 @@ public class AppointmentController {
     public void create() {
         Appointment objAppointment = new Appointment();
 
-        String name = JOptionPane.showInputDialog("Insert name: ");
+        String date = JOptionPane.showInputDialog("Insert name: ");
         String lastName = JOptionPane.showInputDialog("Insert last name: ");
         String identity = JOptionPane.showInputDialog("Insert identity: ");
         String birth = JOptionPane.showInputDialog("Insert birth date in format AAAA-MM-DD: ");

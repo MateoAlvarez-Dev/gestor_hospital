@@ -1,7 +1,9 @@
 package controller;
 
 import entity.Doctor;
+import entity.Specialty;
 import model.DoctorModel;
+import model.SpecialtyModel;
 
 import javax.swing.*;
 import java.util.List;
@@ -9,9 +11,11 @@ import java.util.List;
 public class DoctorController {
 
     private DoctorModel objDoctorModel;
+    private SpecialtyModel specialtyModel;
 
     public DoctorController() {
         this.objDoctorModel = new DoctorModel();
+        this.specialtyModel = new SpecialtyModel();
     }
 
     public void delete() {
@@ -40,11 +44,15 @@ public class DoctorController {
     }
 
     public String getAll(List listObject){
-        String list = "Doctor List";
+        String list = "Doctor List\n";
 
         for (Object obj : listObject) {
             Doctor objDoctor = (Doctor) obj;
-            list += objDoctor.getId() + " - " + objDoctor.getName() + " - " + objDoctor.getLast_name() + " - " + objDoctor.getId_specialty();
+            Specialty objSpecialty = (Specialty) specialtyModel.findById(objDoctor.getId_specialty());
+            list += objDoctor.getId() + " - " 
+                    + objDoctor.getName() + " - " 
+                    + objDoctor.getLast_name() + " - " 
+                    + objSpecialty.getName() + "\n";
         }
 
         return list;
@@ -64,14 +72,19 @@ public class DoctorController {
 
         objDoctor = (Doctor) this.objDoctorModel.insert(objDoctor);
 
-        JOptionPane.showMessageDialog(null, objDoctor.getId() + " - " + objDoctor.getName() + " - " + objDoctor.getLast_name());
+        JOptionPane.showMessageDialog(null, 
+                objDoctor.getId() + " - " 
+                        + objDoctor.getName() + " - " 
+                        + objDoctor.getLast_name() + " - "
+                        + objDoctor.getId_specialty()
+        );
 
     }
 
     public void update(){
         String listDoctors = this.getAll(this.objDoctorModel.findAll());
 
-        int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(listDoctors +"-Enter the ID of the Doctor to edit"));
+        int idUpdate = Integer.parseInt(JOptionPane.showInputDialog(listDoctors + "-Enter the ID of the Doctor to edit"));
 
         Doctor objDoctor = (Doctor) this.objDoctorModel.findById(idUpdate);
 

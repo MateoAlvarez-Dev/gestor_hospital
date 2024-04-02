@@ -1,15 +1,16 @@
 package views;
 
+import controller.DoctorController;
 import controller.PatientController;
 
 import javax.swing.*;
 
-public class PatientMenu {
+public class DoctorMenu {
 
-    PatientController objPatientController;
+    DoctorController objDoctorController;
 
-    public PatientMenu(){
-        objPatientController = new PatientController();
+    public DoctorMenu(){
+        objDoctorController = new DoctorController();
     }
 
     public void render(){
@@ -18,10 +19,10 @@ public class PatientMenu {
             String option;
             option = JOptionPane.showInputDialog("""
                     MENU
-                    1. List Patients
-                    2. Insert Patient
-                    3. Update Patient
-                    4. Delete Patient
+                    1. List Doctors
+                    2. Insert Doctor
+                    3. Update Doctor
+                    4. Delete Doctor
                     6. Back
                     
                     Choose an option: 
@@ -29,19 +30,19 @@ public class PatientMenu {
 
             switch (option){
                 case "1":
-                    objPatientController.getAll();
+                    objDoctorController.getAll();
                     break;
 
                 case "2":
-                    objPatientController.create();
+                    objDoctorController.create();
                     break;
 
                 case "3":
-                    objPatientController.update();
+                    objDoctorController.update();
                     break;
 
                 case "4":
-                    objPatientController.delete();
+                    objDoctorController.delete();
                     break;
 
                 case "6":

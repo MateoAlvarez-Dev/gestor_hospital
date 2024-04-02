@@ -13,11 +13,10 @@ public class SpecialtiesMenu {
     }
 
     public void render(){
-        String option = "";
         do{
 
-            String authorOption;
-            authorOption = JOptionPane.showInputDialog("""
+            String option;
+            option = JOptionPane.showInputDialog("""
                     MENU
                     1. List Specialties
                     2. Insert Specialty
@@ -28,7 +27,7 @@ public class SpecialtiesMenu {
                     Choose an option: 
                     """);
 
-            switch (authorOption){
+            switch (option){
                 case "1":
                     objSpecialtyController.getAll();
                     break;
@@ -49,6 +48,6 @@ public class SpecialtiesMenu {
                     return;
             }
 
-        }while (!option.equals("6"));
+        }while (true);
     }
 }
