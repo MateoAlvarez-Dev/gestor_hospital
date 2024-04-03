@@ -165,6 +165,11 @@ public class AppointmentModel implements CRUD {
             while (results.next()){
                 objAppointment = new Appointment();
                 objAppointment.setId(results.getInt(1));
+                objAppointment.setDate_appointment(results.getString(2));
+                objAppointment.setTime_appointment(results.getString(3));
+                objAppointment.setReason(results.getString(4));
+                objAppointment.setId_patient(results.getInt(5));
+                objAppointment.setId_doctor(results.getInt(6));
             }
 
             preparedStatement.close();
@@ -175,5 +180,38 @@ public class AppointmentModel implements CRUD {
 
         database.closeConnection();
         return objAppointment;
+    }
+
+    public List findByDate(String date){
+        Connection connection = database.connect();
+        List appointments = new ArrayList<>();
+
+        try{
+
+            String sql = "SELECT * FROM appointments WHERE date_appointment = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, date);
+            ResultSet results = preparedStatement.executeQuery();
+
+            while (results.next()){
+                Appointment objAppointment = new Appointment();
+                objAppointment.setId(results.getInt(1));
+                objAppointment.setDate_appointment(results.getString(2));
+                objAppointment.setTime_appointment(results.getString(3));
+                objAppointment.setReason(results.getString(4));
+                objAppointment.setId_patient(results.getInt(5));
+                objAppointment.setId_doctor(results.getInt(6));
+
+                appointments.add(objAppointment);
+            }
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error while loading appointments... " + e.getMessage());
+        }
+
+        database.closeConnection();
+        return appointments;
     }
 }

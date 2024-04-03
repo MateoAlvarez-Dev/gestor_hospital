@@ -12,10 +12,12 @@ public class DoctorController {
 
     private DoctorModel objDoctorModel;
     private SpecialtyModel specialtyModel;
+    private SpecialtyController specialtyController;
 
     public DoctorController() {
         this.objDoctorModel = new DoctorModel();
         this.specialtyModel = new SpecialtyModel();
+        this.specialtyController = new SpecialtyController();
     }
 
     public void delete() {
@@ -60,10 +62,11 @@ public class DoctorController {
 
     public void create() {
         Doctor objDoctor = new Doctor();
+        String specialtyList = this.specialtyController.getAll(this.specialtyModel.findAll());
 
         String name = JOptionPane.showInputDialog("Insert name: ");
         String lastName = JOptionPane.showInputDialog("Insert last name: ");
-        int idSpecialty = Integer.parseInt(JOptionPane.showInputDialog("Insert specialty: "));
+        int idSpecialty = Integer.parseInt(JOptionPane.showInputDialog(specialtyList + "\nInsert specialty: "));
 
 
         objDoctor.setName(name);

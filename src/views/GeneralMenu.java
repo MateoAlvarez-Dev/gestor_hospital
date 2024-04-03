@@ -1,18 +1,18 @@
 package views;
 
-import controller.SpecialtyController;
-
 import javax.swing.*;
 
 public class GeneralMenu {
     SpecialtiesMenu specialtiesMenu;
     PatientMenu patientMenu;
     DoctorMenu doctorMenu;
+    AppointmentMenu appointmentMenu;
 
     public GeneralMenu(){
-        specialtiesMenu = new SpecialtiesMenu();
-        patientMenu = new PatientMenu();
-        doctorMenu = new DoctorMenu();
+        this.specialtiesMenu = new SpecialtiesMenu();
+        this.patientMenu = new PatientMenu();
+        this.doctorMenu = new DoctorMenu();
+        this.appointmentMenu = new AppointmentMenu();
     }
 
     public void render(){
@@ -24,6 +24,7 @@ public class GeneralMenu {
                     1. Specialties Menu
                     2. Patients Menu
                     3. Doctors Menu
+                    4. Appointment Menu
                     
                     Choose an option: 
                     """);
@@ -39,6 +40,10 @@ public class GeneralMenu {
 
                 case "3":
                     doctorMenu.render();
+                    break;
+
+                case "4":
+                    appointmentMenu.render();
                     break;
 
                 case "6":

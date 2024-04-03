@@ -32,6 +32,18 @@ public class PatientController {
         }
     }
 
+    public void getByIdentity(){
+        String identity = JOptionPane.showInputDialog("Insert the identity number");
+        Patient objPatient = (Patient) objPatientModel.findByIdentity(identity);
+
+        if(objPatient == null){
+            JOptionPane.showMessageDialog(null, "Patient not found.");
+        }else{
+            JOptionPane.showMessageDialog(null, "PATIENT FOUND:\n" + objPatient.getId() + " - " + objPatient.getName() + " - " + objPatient.getLast_name() + " - " + objPatient.getIdentity() + " - " + objPatient.getBirth_date() + "\n");
+        }
+
+    }
+
     public void getAll() {
 
         String list = this.getAll(this.objPatientModel.findAll());

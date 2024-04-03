@@ -6,7 +6,6 @@ public class Appointment {
     private String time_appointment;
     private String reason;
     private int id_patient;
-
     private int id_doctor;
 
     public int getId() {

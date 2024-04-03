@@ -22,6 +22,7 @@ public class PatientMenu {
                     2. Insert Patient
                     3. Update Patient
                     4. Delete Patient
+                    5. Find Patient by identity
                     6. Back
                     
                     Choose an option: 
@@ -42,6 +43,10 @@ public class PatientMenu {
 
                 case "4":
                     objPatientController.delete();
+                    break;
+
+                case "5":
+                    objPatientController.getByIdentity();
                     break;
 
                 case "6":

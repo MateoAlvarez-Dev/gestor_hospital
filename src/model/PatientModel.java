@@ -177,4 +177,34 @@ public class PatientModel implements CRUD {
         database.closeConnection();
         return objPatient;
     }
+
+    public Object findByIdentity(String identity){
+        Connection connection = database.connect();
+        Patient objPatient = null;
+
+        try{
+
+            String sql = "SELECT * FROM patients WHERE identity = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, identity);
+            ResultSet results = preparedStatement.executeQuery();
+
+            while (results.next()){
+                objPatient = new Patient();
+                objPatient.setId(results.getInt(1));
+                objPatient.setName(results.getString(2));
+                objPatient.setLast_name(results.getString(3));
+                objPatient.setBirth_date(results.getString(4));
+                objPatient.setIdentity(results.getString(5));
+            }
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error while loading patients... " + e.getMessage());
+        }
+
+        database.closeConnection();
+        return objPatient;
+    }
 }
